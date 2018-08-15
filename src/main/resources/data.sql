@@ -1,0 +1,1 @@
+insert into sneakers values(1, 'Nike', 'Off-White Air Force One', 13, 150);
