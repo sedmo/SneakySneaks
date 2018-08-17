@@ -10,4 +10,7 @@ Database - H2 In Memory Database
 Documentation - Swagger
 Extras - Lombok, Log4j
 
+Useful Links
+https://www.vojtechruzicka.com/documenting-spring-boot-rest-api-swagger-springfox/
+
 Thank you !

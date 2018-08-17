@@ -10,5 +10,5 @@ CREATE TABLE accessories(
     product_number INTEGER IDENTITY PRIMARY KEY,
     type TEXT,
     brand TEXT,
-    name TEXT,  
+    description TEXT,  
 );
