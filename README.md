@@ -1,17 +1,21 @@
-SneakySneaks
-Developed by Chuma Okoro
+#SneakySneaks
+##Developed by Chuma Okoro
 
 
-Description - Sample App made for Demo purposes
+###Description - Sample API for accessing Sneaker and Accessory database
 
-Specs - 
-Framework - SpringBoot
-Database - H2 In Memory Database
-Documentation - Swagger
-Extras - Lombok, Log4j
+###Technologies
+* Framework - SpringBoot
+* Database - H2 In Memory Database
+* API Documentation - Swagger
+* Extras - JDBC API
 
-Useful Links
-https://www.vojtechruzicka.com/documenting-spring-boot-rest-api-swagger-springfox/
-API - endpoint is /swagger-ui.html
+###Useful Links
+* https://www.vojtechruzicka.com/documenting-spring-boot-rest-api-swagger-springfox/
+* [API] (link to heroku)
+* [API Documentation] (/swagger-ui.html)
 
-Thank you !
+
+
+
+#Thank you !
