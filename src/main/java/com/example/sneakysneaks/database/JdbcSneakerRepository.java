@@ -11,20 +11,24 @@ import com.example.sneakysneaks.objects.Sneaker;
 
 import lombok.RequiredArgsConstructor;
 
-
-
 @RequiredArgsConstructor
 @Repository
 public class JdbcSneakerRepository implements SneakerRepository{
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	private final String SQL_BRAND_SEARCH = "select * from sneakers where BRAND = ? ";
+	private final String SQL_SHOW_SNEAKERS = "select * from sneakers ";
+	private final String SQL_FIND_SNEAKERS = "select * from sneakers where product_number = ? ";
+	private final String SQL_DELETE_SNEAKER = "delete from sneakers where product_number = ? ";
+	private final String SQL_INSERT_SNEAKER = "insert into sneakers values (NULL, ?, ?, ?, ?)";
 	
-	private final String SQL_BRAND_SEARCH = "select * from sneakers" + 
-			"where BRAND = ?";
 	
 	
-	
-	
+	@Override
+	public Iterable<Sneaker> getSneakers(){
+		return jdbcTemplate.query(SQL_SHOW_SNEAKERS, this::mapRowToResponse);
+	}
 
 	@Override
 	public Iterable<Sneaker> findBrand(String brand) {
@@ -32,36 +36,46 @@ public class JdbcSneakerRepository implements SneakerRepository{
 	}
 
 	@Override
-	public Sneaker findSneaker(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<Sneaker> findSneaker(int id) {
+		return jdbcTemplate.query(SQL_FIND_SNEAKERS, this::mapRowToResponse, id);
 	}
 
 	@Override
-	public Sneaker checkHealth() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean addSneaker(String brand, String name, int size, double price) {
+		int numAffectedRows = jdbcTemplate.update(SQL_INSERT_SNEAKER, brand, name, size, price );
+		if(numAffectedRows > 0) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	@Override
-	public boolean addSneaker() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeSneaker() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeSneaker(int id) {
+		int numAffectedRows = jdbcTemplate.update(SQL_DELETE_SNEAKER, id);
+		if(numAffectedRows > 0) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
+	
+	
 	private Sneaker mapRowToResponse(ResultSet rs, int rowNum) throws SQLException{	
-		return	new Sneaker(							
+		return new Sneaker(							
 						rs.getInt("product_number"), 
 						rs.getString("brand"), 
 						rs.getString("name"),
 						rs.getInt("size"),
 						rs.getDouble("price"));
 		}
-	
+
 }
+
+
+
+
+

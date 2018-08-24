@@ -6,9 +6,9 @@ import com.example.sneakysneaks.objects.Sneaker;
 
 @Repository
 public interface SneakerRepository {
+	Iterable<Sneaker> getSneakers();
 	Iterable<Sneaker> findBrand(String brand);
-	Sneaker findSneaker(int id);
-	Sneaker checkHealth();
-	boolean addSneaker();
-	boolean removeSneaker();
+	Iterable<Sneaker> findSneaker(int id);
+	boolean addSneaker(String brand, String name, int size, double price);
+	boolean removeSneaker(int id);
 }

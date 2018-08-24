@@ -20,22 +20,61 @@ import lombok.RequiredArgsConstructor;
 @Api(value = "This is the controller for the Sneakysneaks application")
 public class SneakysneaksController {
 	
-//	@Autowired
-//	private final SneakerRepository jdbcSneakerRepository;
-//	
-//	
+	@Autowired
+	private SneakerRepository jdbcSneakerRepository;
 	
-	@ApiOperation(value = "homepage")
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String index() {		
 		return "Welcome to the Sneakysneaks App";
 	}
 	
-	@ApiOperation(value= "Returns a list of all shoes with the given Brand")
-	@RequestMapping(path="/findbrand", method = RequestMethod.POST, produces = "application/json")
-	public ArrayList<Sneaker> findSneakerByBrand(String brand){
-		//return (ArrayList<Sneaker>) jdbcSneakerRepository.findBrand(brand);
-		return new ArrayList<Sneaker>();
-		
+	
+	@ApiOperation(value= "check if database is up")
+	@RequestMapping(path="/healthCheck", method = RequestMethod.GET, produces = "application/json")
+	public boolean healthCheck(){
+		if(((ArrayList<Sneaker>) jdbcSneakerRepository.findSneaker(0)).isEmpty()) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
+	
+	
+	@ApiOperation(value= "returns a list of shoes", notes = " enter the brand to do a search for the shoe")
+	@RequestMapping(path="/findbrand", method = RequestMethod.POST, consumes= "application/json", produces = "application/json")
+	public ArrayList<Sneaker> findSneakerByBrand(String brand){
+		return (ArrayList<Sneaker>) jdbcSneakerRepository.findBrand(brand);
+	}
+	
+	@ApiOperation(value= "add sneaker", notes = "add ALL parameters for a sneaker")
+	@RequestMapping(path="/addSneaker", method = RequestMethod.POST, consumes= "application/json", produces = "application/json")
+	public boolean addSneaker(String brand, String name, int size, double price){
+		return jdbcSneakerRepository.addSneaker(brand, name, size, price);
+	}
+	
+	@ApiOperation(value= "remove sneaker", notes = "add id for the sneaker you want to delete ")
+	@RequestMapping(path="/removeSneaker", method = RequestMethod.DELETE, produces = "application/json")
+	public boolean addSneaker(int product_number){
+		return jdbcSneakerRepository.removeSneaker(product_number);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

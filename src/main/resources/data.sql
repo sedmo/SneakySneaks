@@ -1,3 +1,4 @@
+insert into sneakers values(0, 'HealthCheck', 'HealthCheck', 0, 0);
 insert into sneakers values(1, 'Nike', 'Off-White Air Force One', 13, 150);
 insert into sneakers values(2, 'Nike', 'Sean Wotherspoon Air Maxes', 13, 160);
 insert into sneakers values(3, 'Nike', 'Travis Scott Air Force One', 9, 130);
