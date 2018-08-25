@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.sneakysneaks.objects.Sneaker;
 
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Repository
 public class JdbcSneakerRepository implements SneakerRepository{
 	

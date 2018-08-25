@@ -13,10 +13,8 @@ import com.example.sneakysneaks.objects.Sneaker;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 //import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 @Api(value = "This is the controller for the Sneakysneaks application")
 public class SneakysneaksController {
 	

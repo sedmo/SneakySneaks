@@ -17,7 +17,8 @@
 2. open project in your IDE
 3. navigate to the package ```com.example.sneakysneaks``` 
 4. run the file ```SneakysneaksApplication.java``` as Java Application
-5. Experiment!
+5. Go to web browser and type ```http://localhost:8080/swagger-ui.html#/```
+6. Experiment!
 
 
 ### Useful Links
